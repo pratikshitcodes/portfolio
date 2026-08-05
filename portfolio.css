@@ -91,18 +91,17 @@ section {
 
 /* ── HERO ── */
 .hero{
-    min-height: calc(100vh - 78px);
     display: flex;
     overflow: hidden;
     position: relative;
 }
 .hero-content{
     display: flex;
-    min-height: calc(100vh - 78px);
     width:100%;
     flex-direction: row;
     background-color: rgb(20, 20, 20);
     gap:90px;
+    padding: 40px 0 80px;
 }
 .hero-img{
     padding: 100px;
@@ -836,14 +835,19 @@ textarea:focus{
     .nav-links.open{
         transform: translateX(0);
     }
-    .nav-links a{ font-size: 20px; }
+.nav-links a{ font-size: 20px; }
 
-/* HERO */
+/* ── SECTIONS: use content-based height on mobile so no blank gaps ── */
     .hero,
-    .hero-content{
+    .hero-content,
+    .about,
+    .resume-section,
+    .contact-section{
         min-height: auto;
         height: auto;
     }
+
+/* HERO */
     .hero-content{
         flex-direction: column;
         align-items: center;
