@@ -1,3 +1,26 @@
+// ── SEND MESSAGE (mailto) ──
+const sendBtn = document.getElementById("sendBtn");
+
+if (sendBtn) {
+    sendBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("contactName").value.trim();
+        const email = document.getElementById("contactEmail").value.trim();
+        const message = document.getElementById("contactMessage").value.trim();
+
+        if (!name || !email || !message) {
+            alert("Please fill in your name, email and message.");
+            return;
+        }
+
+        const subject = `Portfolio Contact from ${name}`;
+        const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+        const mailtoLink = `mailto:singhpratikshit23@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+        window.location.href = mailtoLink;
+    });
+}
+
 // ── HAMBURGER MENU TOGGLE ──
 const hamburger = document.getElementById("hamburger");
 const navLinksEl = document.getElementById("navLinks");
@@ -148,6 +171,7 @@ function abtSectionTrigger() {
 ScrollTrigger.create({
     trigger: "#about",
     start: "top 70%",
+    once: true,
     onEnter: abtSectionTrigger,
 });
 
@@ -155,6 +179,7 @@ ScrollTrigger.create({
 ScrollTrigger.create({
     trigger: "#projects",
     start: "top 70%",
+    once: true,
     onEnter: () => {
         gsap.fromTo(".project-card",
     { opacity: 0, y: 0 },
@@ -181,8 +206,8 @@ function resumeTrigger() {
 ScrollTrigger.create({
     trigger: "#resume",
     start: "top 70%",
-    onEnter: resumeTrigger,
-    onEnterBack: resumeTrigger
+    once: true,
+    onEnter: resumeTrigger
 });
 
 // ── CONTACT section ──
@@ -215,5 +240,6 @@ function contactTrigger() {
 ScrollTrigger.create({
     trigger: "#contact",
     start: "top 70%",
+    once: true,
     onEnter: contactTrigger
 });

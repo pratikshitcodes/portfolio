@@ -838,7 +838,12 @@ textarea:focus{
     }
     .nav-links a{ font-size: 20px; }
 
-    /* HERO */
+/* HERO */
+    .hero,
+    .hero-content{
+        min-height: auto;
+        height: auto;
+    }
     .hero-content{
         flex-direction: column;
         align-items: center;
