@@ -1,8 +1,11 @@
+*{
+    box-sizing: border-box;
+}
 body{
     margin: 0;
     min-height: 100vh;
-    min-width: 1200px;
     background-color: black;
+    overflow-x: hidden;
 }
 html {
   scroll-behavior:smooth;
@@ -177,12 +180,12 @@ section {
 /* CHANGE 4: hero icons — dark theme, cyan tint, glow on hover */
 .linkedin,.leetcode,.github{
     display: inline-flex;
-    width:20px;
-    height:20px;
-    border-radius: 4px;
+    width:44px;
+    height:44px;
+    border-radius: 8px;
     background: rgb(28, 28, 28);
     border: 1px solid #03dddd;
-    padding: 4px;
+    padding: 8px;
     transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 .linkedin img,
@@ -632,8 +635,8 @@ section {
 }
 
 .contact-social-link{
-    width:24px;
-    height: 24px;
+    width:44px;
+    height: 44px;
 }
 .contact-social-link:hover img {
     filter: invert(1);
@@ -741,4 +744,172 @@ textarea:focus{
     font-family: "Poppins", sans-serif;
     font-size: 12px;
     margin: 8px 0 0;
+}
+
+/* ── HAMBURGER MENU ── */
+.hamburger{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1100;
+}
+.hamburger span{
+    display: block;
+    width: 26px;
+    height: 3px;
+    background-color: #00ffff;
+    border-radius: 3px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.hamburger.active span:nth-child(1){
+    transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2){
+    opacity: 0;
+}
+.hamburger.active span:nth-child(3){
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Make project descriptions & buttons clickable on touch devices */
+.project-desc, .view-btn{
+    pointer-events: none;
+}
+@media (hover: none) {
+    .project-desc{ opacity: 1; }
+    .view-btn{ opacity: 1; pointer-events: auto; }
+}
+
+/* ── RESPONSIVE: TABLET (≤1024px) ── */
+@media screen and (max-width: 1024px) {
+    .nav-links{
+        gap: 30px;
+        padding-right: 40px;
+    }
+    .hero-content{
+        gap: 40px;
+    }
+    .hero-img{ padding: 60px; }
+    .circle{ width: 300px; height: 300px; }
+    .about{
+        padding: 40px 40px 60px;
+    }
+    .about-text{ width: 100%; }
+    .profile-img{ width: 280px; height: 280px; }
+    .project-section{ padding: 0 40px 80px; }
+    .container{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+    .resume-section, .contact-section{ padding: 20px 40px 40px; }
+    .contact-container{ gap: 60px; }
+}
+
+/* ── RESPONSIVE: MOBILE (≤768px) ── */
+@media screen and (max-width: 768px) {
+    .header{
+        padding: 0 20px;
+        justify-content: space-between;
+    }
+    .head-left-section{ flex: none; }
+    .hamburger{ display: flex; }
+    .nav-links{
+        position: fixed;
+        top: 78px;
+        right: 0;
+        height: calc(100vh - 78px);
+        width: 240px;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 30px;
+        padding: 40px 20px;
+        background-color: rgb(32, 32, 32);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        box-shadow: -4px 0 15px rgba(0,0,0,0.5);
+    }
+    .nav-links.open{
+        transform: translateX(0);
+    }
+    .nav-links a{ font-size: 20px; }
+
+    /* HERO */
+    .hero-content{
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 40px 20px;
+        text-align: center;
+    }
+    .hero-img{ padding: 20px 0 0; }
+    .circle{ width: 220px; height: 220px; }
+    .hero-text{ align-items: center; }
+    .profession{ padding-top: 20px; font-size: 18px; }
+    .name{ font-size: 24px; }
+    .hero-about{ width: 100%; max-width: 420px; }
+    .online-links{
+        flex-direction: row;
+        justify-content: center;
+        width: auto;
+        padding: 0;
+        transform: none;
+        gap: 20px;
+    }
+    .download{ flex-wrap: wrap; justify-content: center; }
+
+    /* ABOUT */
+    .about{
+        flex-direction: column;
+        padding: 50px 25px;
+        gap: 40px;
+    }
+    .about-text{ width: 100%; }
+    .profile-img{ width: 240px; height: 240px; }
+
+    /* PROJECTS */
+    .project-section{ padding: 0 25px 60px; }
+    .container{ grid-template-columns: 1fr; }
+
+    /* RESUME */
+    .resume-section{ padding: 20px 25px 40px; }
+    .resume-container{ width: 100%; }
+    .resume-container > *{ width: 100%; }
+    .project-overview-1 p,
+    .project-overview-2 p,
+    .project-overview-3 p{ width: 100%; }
+
+    /* CONTACT */
+    .contact-section{ padding: 30px 25px 40px; gap: 40px; }
+    .contact-container{ flex-direction: column; gap: 40px; width: 100%; }
+    .right-section{ width: 100%; }
+    .name-field, .email-field{
+        width: 100%;
+        padding: 12px 8px;
+    }
+    textarea{ width: 100%; padding: 12px 8px 120px; }
+
+    /* FOOTER */
+    .footer{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 30px 20px 20px;
+        gap: 20px;
+    }
+    .footer-links{ flex-wrap: wrap; justify-content: center; gap: 20px; }
+}
+
+/* ── RESPONSIVE: SMALL MOBILE (≤480px) ── */
+@media screen and (max-width: 480px) {
+    .circle{ width: 180px; height: 180px; }
+    .profession{ font-size: 16px; }
+    .name{ font-size: 20px; }
+    .resume-heading{ font-size: 28px; }
+    .contact-heading{ font-size: 28px; }
+    .nav-links{ width: 200px; }
 }

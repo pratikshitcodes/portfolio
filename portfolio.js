@@ -1,19 +1,37 @@
+// ── HAMBURGER MENU TOGGLE ──
+const hamburger = document.getElementById("hamburger");
+const navLinksEl = document.getElementById("navLinks");
+
+if (hamburger && navLinksEl) {
+    hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLinksEl.classList.toggle("open");
+    });
+    // Close menu when a nav link is clicked
+    navLinksEl.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navLinksEl.classList.remove("open");
+        });
+    });
+}
+
 // ── CHANGE 13: active nav on scroll using IntersectionObserver ──
 const navList = document.querySelector(".nav-links");
-const navLinks = document.querySelectorAll(".nav-links a");
+const navAnchors = document.querySelectorAll(".nav-links a");
 const allSections = document.querySelectorAll("section[id]");
 
 navList.addEventListener("click", (e) => {
     const clickedLink = e.target.closest("a");
     if (!clickedLink) return;
-    navLinks.forEach(l => l.classList.remove("active"));
+    navAnchors.forEach(l => l.classList.remove("active"));
     clickedLink.classList.add("active");
 });
 
 const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            navLinks.forEach(link => {
+            navAnchors.forEach(link => {
                 link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id);
             });
         }
